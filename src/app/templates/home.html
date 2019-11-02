@@ -28,6 +28,7 @@
 <script>
   // Even converting Python snake-cake to JS camel-case. Best build for sure.
   var averageWordcount = JSON.parse('{{ average_wordcount | tojson | safe}}');
+  var cumulativeWordcount = JSON.parse('{{ cumulative_wordcount | tojson | safe}}');
 </script>
 <script src="{{ url_for('static', filename='custom/js/drawstats.js') }}" defer></script>
 {% endblock %}

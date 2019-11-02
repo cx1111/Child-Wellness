@@ -54,7 +54,7 @@ def home():
 
     return render_template(
         'home.html', child=child, headline_figures=headline_figures,
-        cumulative_wordcount=cumulative_
+        cumulative_wordcount=cumulative_stats,
         average_wordcount=benchmark.AVERAGE_WORDCOUNT,
         average_syllables=benchmark.AVERAGE_SYLLABLES,)
 

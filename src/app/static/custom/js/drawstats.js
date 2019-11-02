@@ -10,10 +10,9 @@ var margin = { top: 50, right: 50, bottom: 50, left: 50 },
   width = parentDiv.offsetWidth - margin.left - margin.right, // Use the window's width
   height = parentDiv.offsetWidth * 0.66 - margin.top - margin.bottom; // Use the window's height
 
-// Data points
-// Benchmark upper
-var datasetUpper = averageWordcount['0.9']
-var datasetLower = averageWordcount['0.1']
+// Data points from benchmarks
+var datasetUpper = averageWordcount["0.9"];
+var datasetLower = averageWordcount["0.1"];
 // The number of datapoints
 var n = datasetUpper.length;
 
@@ -30,33 +29,15 @@ var yScale = d3
   .range([height, 0]); // output
 
 // 7. d3's line generator
-var line = d3
-  .line()
-  .x(function(d, i) {
-    return xScale(i);
-  }) // set the x values for the line generator
-  .y(function(d) {
-    return yScale(d.y);
-  }) // set the y values for the line generator
-  .curve(d3.curveMonotoneX); // apply smoothing to the line
-
-var lineBenchmark = d3
+var lineGenerator = d3
   .line()
   .x(function(d) {
-    return xScale(d.month);
+    return xScale(d.age_months);
   }) // set the x values for the line generator
   .y(function(d) {
-    return yScale(d.count);
+    return yScale(d.wordcount);
   }) // set the y values for the line generator
   .curve(d3.curveMonotoneX); // apply smoothing to the line
-
-
-// 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
-// Target child's data
-var dataset = d3.range(n).map(function(d) {
-  return { y: d3.randomUniform(1)() };
-});
-
 
 
 // 1. Add the SVG to the page and employ #2
@@ -87,59 +68,65 @@ svg
 //   .datum(dataset) // 10. Binds data to the line
 //   .attr("class", "line") // Assign a class for styling
 //   .attr("d", line); // 11. Calls the line generator
-// Upper line
+
+svg
+  .append("path")
+  .datum(cumulativeWordcount)
+  .attr("class", "line")
+  .attr("d", lineGenerator);
+
 svg
   .append("path")
   .datum(datasetUpper)
   .attr("class", "line-upper")
-  .attr("d", lineBenchmark);
+  .attr("d", lineGenerator);
 
-  svg
+svg
   .append("path")
   .datum(datasetLower)
   .attr("class", "line-upper")
-  .attr("d", lineBenchmark);
+  .attr("d", lineGenerator);
 
 // 12. Appends a circle for each datapoint
 
-// svg
-//   .selectAll(".dot")
-//   .data(dataset)
-//   .enter()
-//   .append("circle") // Uses the enter().append() method
-//   .attr("class", "dot") // Assign a class for styling
-//   .attr("cx", function(d, i) {
-//     return xScale(i);
-//   })
-//   .attr("cy", function(d) {
-//     return yScale(d.y);
-//   })
-//   .attr("r", 5);
+svg
+  .selectAll(".dot")
+  .data(cumulativeWordcount)
+  .enter()
+  .append("circle") // Uses the enter().append() method
+  .attr("class", "dot") // Assign a class for styling
+  .attr("cx", function(d) {
+    return xScale(d.age_months);
+  })
+  .attr("cy", function(d) {
+    return yScale(d.wordcount);
+  })
+  .attr("r", 5);
 
 svg
   .selectAll(".dot")
   .data(datasetUpper)
   .enter()
-  .append("circle") // Uses the enter().append() method
-  .attr("class", "dot-upper") // Assign a class for styling
+  .append("circle")
+  .attr("class", "dot-upper")
   .attr("cx", function(d) {
-    return xScale(d.month);
+    return xScale(d.age_months);
   })
   .attr("cy", function(d) {
-    return yScale(d.count);
+    return yScale(d.wordcount);
   })
   .attr("r", 5);
 
-  svg
+svg
   .selectAll(".dot")
   .data(datasetLower)
   .enter()
-  .append("circle") // Uses the enter().append() method
-  .attr("class", "dot-upper") // Assign a class for styling
+  .append("circle")
+  .attr("class", "dot-upper")
   .attr("cx", function(d) {
-    return xScale(d.month);
+    return xScale(d.age_months);
   })
   .attr("cy", function(d) {
-    return yScale(d.count);
+    return yScale(d.wordcount);
   })
   .attr("r", 5);
