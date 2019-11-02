@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ video_info["title"] }}{% endblock %}
+
+<!-- Main content -->
+{% block content %}
+<div class="container">
+  <h1>{{ video_info["title"]|title }}</h1>
+  <iframe src="{{ video_info['url'] }}" width="100%" height="600"></iframe>
+</div>
+{% endblock %}

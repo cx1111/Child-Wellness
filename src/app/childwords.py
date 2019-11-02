@@ -65,7 +65,11 @@ def video_detail(video_name):
     """
     Show the video and associated detail
     """
-    return 'Video {}'.format(video_name)
+    # Hardcode url for now
+    video_info = {
+        'title': video_name,
+        'url': 'https://drive.google.com/file/d/11dRucTxdfx6Soy_ldkzSaiDJ1I2eSV72/preview', }
+    return render_template('video_detail.html', video_info=video_info)
 
 
 @app.route('/realhome')
