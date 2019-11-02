@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 
 
+
 def transcribe_audio(audio_uri, output_bucket):
     client = boto3.client('transcribe')
 
@@ -30,3 +31,12 @@ def transcribe_audio(audio_uri, output_bucket):
         return output_path, response
     return 'something went wrong'
 
+def download_transcription(input_path,output_folder):
+    file_name = input_path.split('/')[1]
+    bucket = input_path.split('/')[0]
+    download_target = os.path.join(output_folder,file_name)
+
+
+    s3 = boto3.resource('s3')
+
+    s3.meta.client.download_file(bucket, file_name, download_target)
