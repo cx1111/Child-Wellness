@@ -6,7 +6,7 @@ from datetime import datetime
 def transcribe_audio(audio_uri, output_bucket):
     client = boto3.client('transcribe')
 
-    file_name = os.path.basename(audio_uri).split('.')[0] + datetime.now().strftime('%Y%m%d%H%m')
+    file_name = os.path.basename(audio_uri).split('.')[0] + datetime.now().strftime('%Y%m%d%H%m%s')
     file_format = os.path.basename(audio_uri).split('.')[1]
 
     output_path = output_bucket + '/' + file_name + '.json'
@@ -26,5 +26,7 @@ def transcribe_audio(audio_uri, output_bucket):
             'ChannelIdentification': False
         }
     )
+    if response['TranscriptionJob']['TranscriptionJobStatus'] == 'IN_PROGRESS':
+        return output_path, response
+    return 'something went wrong'
 
-    return output_path, response
