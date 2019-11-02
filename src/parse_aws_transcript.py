@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from transcript import *
+from .transcript import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument('json_transcript', type=str, 
@@ -106,4 +106,22 @@ def parse_aws_transcript(json_file):
 	return transcript
 
 if __name__ == '__main__':
-	parse_aws_transcript(args.json_transcript)
+	transcript = parse_aws_transcript(args.json_transcript)
+
+	# Print words and associated data per speaker
+	for sp_id in transcript.speaker_ids:
+		print("Speaker: {}".format(sp_id))
+		sp_transcript = transcript.get_speaker_transcript(sp_id)
+		print("\tSentences:")
+		for sentence in sp_transcript.sentence_list:
+			print("\t\t{}".format(sentence))
+
+		print("\tWord details:")
+		for word_data in sp_transcript.word_list:
+			print("\t\tWord: {}".format(word_data.content))
+			print("\t\t\tWord type: {}".format(word_data.metadata.word_type))
+			print("\t\t\tConfidence: {}".format(word_data.metadata.confidence))
+			print("\t\t\tStart time: {}".format(word_data.metadata.start_time))
+			print("\t\t\tEnd time: {}".format(word_data.metadata.end_time))
+
+		print("="*40)
