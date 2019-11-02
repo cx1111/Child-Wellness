@@ -11,8 +11,6 @@ def transcribe_audio(audio_uri,output_bucket):
     file_name = os.path.basename()
 
 
-
-
     response = client.start_transcription_job(
         TranscriptionJobName=file_name,
         LanguageCode='en-US'|'es-US'|'en-AU'|'fr-CA'|'en-GB'|'de-DE'|'pt-BR'|'fr-FR'|'it-IT'|'ko-KR'|'es-ES'|'en-IN'|'hi-IN'|'ar-SA'|'ru-RU'|'zh-CN',
@@ -32,3 +30,4 @@ def transcribe_audio(audio_uri,output_bucket):
     )
 
     return response
+
