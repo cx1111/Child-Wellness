@@ -7,7 +7,13 @@ class AudioCleaner:
         pass
 
     def clean_audio(self,audio_file):
+        self.audio_file = audio_file
+
+        self.identify_child_voice()
+        self.adjust_volume()
+        self.denoise_background()
         self.shift_pitch_down()
+        self.adjust_sample_rate()
 
     def shift_pitch_down(self):
         pass
