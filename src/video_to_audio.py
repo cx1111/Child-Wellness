@@ -8,7 +8,8 @@ parser.add_argument('video_dir', type=str,
 					help='directory containing videos to convert to audio')
 parser.add_argument('dest_dir', type=str,
 					help='directory to store converted audio files')
-parser.add_argument('--video_ext', type=str, nargs='+', default=['.mp4'],
+parser.add_argument('--video_ext', type=str, nargs='+',
+					default=['.mp4', '.mov', '.ogv', '.mpeg', '.avi'],
 					help='extensions of video files to convert')
 parser.add_argument('--dest_ext', type=str, default='.mp3',
 					help='extension audio files will be converted to')
