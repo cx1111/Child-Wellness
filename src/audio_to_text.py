@@ -96,3 +96,4 @@ def get_list_of_transcripts():
         transcripts_file_lists = [i['Key'] for i in response['Contents']]
 
     return transcripts_file_lists
+
