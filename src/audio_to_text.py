@@ -74,3 +74,25 @@ def download_transcription(input_path,output_folder):
     s3 = boto3.resource('s3')
 
     s3.meta.client.download_file(bucket, file_name, download_target)
+
+def get_list_of_audio_files():
+    s3 = boto3.client('s3')
+
+    response = s3.list_objects(
+        Bucket=config.BUCKET_AUDIO,
+    )
+    if response['ResponseMetadata']['HTTPStatusCode'] == 200:
+        transcripts_file_lists = [i['Key'] for i in response['Contents']]
+
+    return transcripts_file_lists
+
+def get_list_of_transcripts():
+    s3 = boto3.client('s3')
+
+    response = s3.list_objects(
+        Bucket=config.BUCKET_TRANSCRIPTION,
+    )
+    if response['ResponseMetadata']['HTTPStatusCode'] == 200:
+        transcripts_file_lists = [i['Key'] for i in response['Contents']]
+
+    return transcripts_file_lists
