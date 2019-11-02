@@ -25,9 +25,8 @@ def get_child_transcripts():
          'file_path': ''}]
 
     for i in child_transcripts:
-        print(i)
-        for k,v in i.items():
-            i['date'] = fake_ages[i['title']]
+        i['age_months'] = fake_ages[i['title']]
+
 
     return child_transcripts
 
