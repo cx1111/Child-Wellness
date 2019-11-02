@@ -1,3 +1,4 @@
+from . import benchmark
 from . import vocabloader
 from datetime import datetime
 import os
@@ -42,11 +43,6 @@ def home():
     child_transcripts = vocabloader.get_child_transcripts()
     cumulative_stats = vocabloader.get_cumulative_stats(child_transcripts)
 
-    # Get info for each video
-
-    # Headline figures
-
-    # Recent average syllable count
     headline_figures = {
         'wordcount': 270, 'wordcount_percentile': 88,
         'average_syllables': 2.8, 'syllable_percentile': 96,
@@ -54,10 +50,13 @@ def home():
         'getting_into_stanford': False}
 
     child = CHILD.copy()
-    child['age'] = '19 Months'
+    child['age'] = '32 Months'
 
-    return render_template('home.html', child=child,
-                           headline_figures=headline_figures)
+    return render_template(
+        'home.html', child=child, headline_figures=headline_figures,
+        cumulative_wordcount=cumulative_
+        average_wordcount=benchmark.AVERAGE_WORDCOUNT,
+        average_syllables=benchmark.AVERAGE_SYLLABLES,)
 
 
 @app.route('/videos/<video_name>')
