@@ -1,2 +1,3 @@
+boto3==1.10.8
 Flask==1.1.1
 moviepy==1.0.1
