@@ -1,8 +1,8 @@
 import boto3
 import os
 from datetime import datetime
-import config
-
+from . import config
+import glob
 
 def transcribe_audio(audio_uri, output_bucket=config.BUCKET_TRANSCRIPTION):
     """
@@ -41,6 +41,18 @@ def transcribe_audio(audio_uri, output_bucket=config.BUCKET_TRANSCRIPTION):
     return 'something went wrong'
 
 
+def upload_audio_in_dir(dir_path, bucket=config.BUCKET_AUDIO):
+    """
+    Uploads all files in the given directory to the target s3 bucket
+
+    Parameters:
+        dir_path (str): Source dir where audio files are to be uploaded
+        bucket (str): Destination for the uploaded file
+    """
+    for file_path in glob.glob(os.path.join(dir_path, "*")):
+        print("Uploading file {}".format(file_path))
+        result = upload_audio(file_path)
+
 def upload_audio(file_path,bucket=config.BUCKET_AUDIO):
     """
     Uploads a file to the target s3 bucket
@@ -75,11 +87,11 @@ def download_transcription(input_path,output_folder):
 
     s3.meta.client.download_file(bucket, file_name, download_target)
 
-def get_list_of_audio_files():
+def get_list_of_audio_files(bucket=config.BUCKET_AUDIO):
     s3 = boto3.client('s3')
 
     response = s3.list_objects(
-        Bucket=config.BUCKET_AUDIO,
+        Bucket=bucket,
     )
     if response['ResponseMetadata']['HTTPStatusCode'] == 200:
         transcripts_file_lists = [i['Key'] for i in response['Contents']]

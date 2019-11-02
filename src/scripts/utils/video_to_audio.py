@@ -3,18 +3,6 @@ import glob
 import os
 import moviepy.editor as mp
 
-parser = argparse.ArgumentParser()
-parser.add_argument('video_dir', type=str, 
-					help='directory containing videos to convert to audio')
-parser.add_argument('dest_dir', type=str,
-					help='directory to store converted audio files')
-parser.add_argument('--video_ext', type=str, nargs='+',
-					default=['.mp4', '.mov', '.ogv', '.mpeg', '.avi'],
-					help='extensions of video files to convert')
-parser.add_argument('--dest_ext', type=str, default='.mp3',
-					help='extension audio files will be converted to')
-args = parser.parse_args()
-
 def convert_video(video_file, dest_audio_file):
 	"""
 	Convert the given video file to an audio file in the specified location
@@ -80,5 +68,17 @@ def convert_videos_in_dir(video_dir, dest_dir,
 		convert_video(video_file, dest_audio_file)
 
 if __name__ == '__main__':
+	parser = argparse.ArgumentParser()
+	parser.add_argument('video_dir', type=str, 
+						help='directory containing videos to convert to audio')
+	parser.add_argument('dest_dir', type=str,
+						help='directory to store converted audio files')
+	parser.add_argument('--video_ext', type=str, nargs='+',
+						default=['.mp4', '.mov', '.ogv', '.mpeg', '.avi'],
+						help='extensions of video files to convert')
+	parser.add_argument('--dest_ext', type=str, default='.mp3',
+						help='extension audio files will be converted to')
+	args = parser.parse_args()
+	
 	convert_videos_in_dir(args.video_dir, args.dest_dir,
 						  args.video_ext, args.dest_ext)
