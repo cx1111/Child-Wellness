@@ -8,6 +8,8 @@
 
 ### Installation and Setup
 
+Install Python 3.7.
+
 Install Python requirements:
 ```
 pip install -r requirements.txt
