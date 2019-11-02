@@ -40,7 +40,7 @@ def upload_audio(file_path,bucket=config.BUCKET_AUDIO):
 
     with open(file_path, 'rb') as data:
         response = s3.upload_fileobj(data, bucket, file_name)
-    print(response)
+
     return response
 
 
