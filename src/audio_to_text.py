@@ -31,6 +31,7 @@ def transcribe_audio(audio_uri, output_bucket=config.BUCKET_TRANSCRIPTION):
         return output_path, response
     return 'something went wrong'
 
+
 def upload_audio(file_path,bucket=config.BUCKET_AUDIO):
 
     file_name = os.path.basename(file_path)
