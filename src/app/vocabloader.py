@@ -8,17 +8,26 @@ def get_child_transcripts():
     - Video file path
 
     """
+
+    fake_ages = {'Example1':16,'Example2':18,'Example3':20,'Example4':22,'Example5':24,
+                 'Example6':26,'Example7':27,'Example8':28,'Example9':30,'ExampleReal':32,}
+
     # Replace this with real db/data file loading
     child_transcripts = child_transcripts = [
-        {'title': 'Video 1', 'date': '11/09/2017',
+        {'title': 'Example1', 'date': '11/09/2017',
          'unique_words': ['hi', 'dada', 'mama', 'haha', 'no'],
          'file_path': ''},
-        {'title': 'Video 2', 'date': '01/12/2017',
+        {'title': 'Example2', 'date': '01/12/2017',
          'unique_words': ['hi', 'dada', 'mama', 'haha', 'no'],
          'file_path': ''},
-        {'title': 'Video 3', 'date': '25/02/2018',
+        {'title': 'Example3', 'date': '25/02/2018',
          'unique_words': ['hi', 'dada', 'mama', 'haha', 'no'],
          'file_path': ''}]
+
+    for i in child_transcripts:
+        print(i)
+        for k,v in i.items():
+            i['date'] = fake_ages[i['title']]
 
     return child_transcripts
 
