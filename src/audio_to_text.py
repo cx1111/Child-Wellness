@@ -1,10 +1,10 @@
 import boto3
 import os
 from datetime import datetime
+import config
 
 
-
-def transcribe_audio(audio_uri, output_bucket):
+def transcribe_audio(audio_uri, output_bucket=config.BUCKET_TRANSCRIPTION):
     client = boto3.client('transcribe')
 
     file_name = os.path.basename(audio_uri).split('.')[0] + datetime.now().strftime('%Y%m%d%H%m%s')
@@ -31,11 +31,22 @@ def transcribe_audio(audio_uri, output_bucket):
         return output_path, response
     return 'something went wrong'
 
+def upload_audio(file_path,bucket=config.BUCKET_AUDIO):
+
+    file_name = os.path.basename(file_path)
+
+    s3 = boto3.client('s3')
+
+    with open(file_path, 'rb') as data:
+        response = s3.upload_fileobj(data, bucket, file_name)
+    print(response)
+    return response
+
+
 def download_transcription(input_path,output_folder):
     file_name = input_path.split('/')[1]
     bucket = input_path.split('/')[0]
     download_target = os.path.join(output_folder,file_name)
-
 
     s3 = boto3.resource('s3')
 
