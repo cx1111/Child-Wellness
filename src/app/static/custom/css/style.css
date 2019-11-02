@@ -1,3 +1,11 @@
-h1 {
-  color: red;
+.bg-blue1 {
+  background-color: #2e3558;
+}
+
+.bg-blue2 {
+  background-color: #2957ee;
+}
+
+.bg-blue3 {
+  background-color: #30c1d7;
 }
