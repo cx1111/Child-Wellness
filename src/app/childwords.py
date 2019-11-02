@@ -1,8 +1,10 @@
-from flask import Flask, render_template
+import os
+
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 # Local location of videos
-VIDEO_DIR = ''
+VIDEO_DIR = os.path.join(app.root_path, 'static', 'videos')
 
 # Local location of metadata
 
@@ -15,18 +17,12 @@ def home():
 @app.route('/videos/<video_name>')
 def video_detail(video_name):
     """
-    Show the video
+    Show the video and associated detail
     """
     return 'Video {}'.format(video_name)
 
 
-@app.route('/post/<int:post_id>')
-def show_post(post_id):
-    # show the post with the given id, the id is an integer
-    return 'Post %d' % post_id
-
-
-@app.route('/path/<path:subpath>')
-def show_subpath(subpath):
-    # show the subpath after /path/
-    return 'Subpath %s' % escape(subpath)
+@app.route('/realhome')
+def real_home():
+    "Upper landing page with all apps shown"
+    return 'I wonder if we will get to this'
