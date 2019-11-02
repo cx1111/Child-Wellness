@@ -12,11 +12,9 @@ def transcribe_audio(audio_uri, output_bucket=config.BUCKET_TRANSCRIPTION):
         audio_uri (str): Source audio file s3 uri to be converted
         output_bucket (str): Destination for the transcription json file
     """
-
-
     client = boto3.client('transcribe')
 
-    file_name = os.path.basename(audio_uri).split('.')[0] + datetime.now().strftime('%Y%m%d%H%m%s')
+    file_name = os.path.basename(audio_uri).split('.')[0] + '_' + datetime.now().strftime('%Y%m%d%H%m%s')
     file_format = os.path.basename(audio_uri).split('.')[1]
 
     output_path = output_bucket + '/' + file_name + '.json'
@@ -36,6 +34,7 @@ def transcribe_audio(audio_uri, output_bucket=config.BUCKET_TRANSCRIPTION):
             'ChannelIdentification': False
         }
     )
+
     if response['TranscriptionJob']['TranscriptionJobStatus'] == 'IN_PROGRESS':
         return output_path, response
     return 'something went wrong'
@@ -98,7 +97,7 @@ def get_list_of_audio_files(bucket=config.BUCKET_AUDIO):
 
     return transcripts_file_lists
 
-def get_list_of_transcripts():
+def get_list_of_transcripts(bucket=config.BUCKET_TRANSCRIPTION):
     s3 = boto3.client('s3')
 
     response = s3.list_objects(

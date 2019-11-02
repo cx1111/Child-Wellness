@@ -3,6 +3,8 @@ import glob
 import os
 import moviepy.editor as mp
 
+from .util import *
+
 def convert_video(video_file, dest_audio_file):
 	"""
 	Convert the given video file to an audio file in the specified location
@@ -29,16 +31,6 @@ def get_dest_audio_file(video_file, dest_dir, dest_ext):
 	_, video_ext = os.path.splitext(video_basename)
 	audio_basename = video_basename.replace(video_ext, dest_ext)
 	return os.path.join(dest_dir, audio_basename)
-
-def create_dir_if_not_exists(dir_path):
-	"""
-	Create the given directory if it doesn't already exist
-
-	Parameters:
-		dir_path (str): directory to create if not exists
-	"""
-	if not os.path.exists(dir_path):
-		os.makedirs(dir_path)
 
 def convert_videos_in_dir(video_dir, dest_dir, 
 						  video_ext=['.mp4', '.mov', '.ogv', '.mpeg', '.avi'],
