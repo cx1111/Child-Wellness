@@ -52,7 +52,9 @@ def create_dir_if_not_exists(dir_path):
 	if not os.path.exists(dir_path):
 		os.makedirs(dir_path)
 
-def convert_videos_in_dir(video_dir, dest_dir, video_ext=['.mp4'], dest_ext='.mp3'):
+def convert_videos_in_dir(video_dir, dest_dir, 
+						  video_ext=['.mp4', '.mov', '.ogv', '.mpeg', '.avi'],
+						  dest_ext='.mp3'):
 	"""
 	Convert all videos in the given directory of the specified type to audio files
 	that will be stored in the provided directory
