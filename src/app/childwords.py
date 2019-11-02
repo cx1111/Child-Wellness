@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 
 from flask import Flask, render_template, request
@@ -8,10 +9,55 @@ VIDEO_DIR = os.path.join(app.root_path, 'static', 'videos')
 
 # Local location of metadata
 
+CHILD = {
+    'name': 'Alexandria',
+    'dob': '31/06/2017',
+}
+
 
 @app.route('/')
 def home():
-    return render_template('home.html', key='value')
+    """
+    The vocabulary home page. Contains graphs and headline figures
+
+    Graphs:
+    - Line graph of cumulative word count
+    - Line graph of average syllable count
+    -
+
+    Headline Figures:
+    - Total unique words in lifetime
+    - Wordcount percentile
+    - Recent average syllable count
+    - Syllable percentile
+    - Longest word
+    - Whether they are getting into Stanford
+
+    """
+    # Load NIH benchmarks and distributions
+
+    # Load metadata from all videos, ordered by datetime
+    child_transcripts = [
+        {'title': 'Video 1', 'date': '11/09/2017',
+         'unique_words': ['hi', 'dada', 'mama', 'haha', 'no']},
+        {},
+        {}]
+    # Get info for each video
+
+    # Headline figures
+    unique_words = 270
+    # Recent average syllable count
+    headline_figures = {
+        'unique_words': 270, 'wordcount_percentile': 88,
+        'average_syllables': 2.8, 'syllable_percentile': 96,
+        'longest_word': 'Miscellaneous',
+        'getting_into_stanford': False}
+
+    child = CHILD.copy()
+    child['age'] = '19 Months'
+
+    return render_template('home.html', child=child,
+                           headline_figures=headline_figures)
 
 
 @app.route('/videos/<video_name>')

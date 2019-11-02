@@ -1,13 +1,23 @@
-# PredictiveChildWellness
+# Predictive Child Wellness
 
-## Installation and Setup
+## About
+
+
+
+## Usage
+
+### Installation and Setup
 
 Install Python requirements:
 ```
 pip install -r requirements.txt
 ```
 
-## Running the Application
+### Getting Transcripts from Amazon Transcribe
+
+### Process Transcribe Outputs
+
+### Running the Web Application
 
 Run the main Flask app:
 ```
