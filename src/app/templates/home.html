@@ -9,23 +9,51 @@
     <h1 class="float-center">{{ child["name"]}}'s Vocabulary</h1>
     <!-- This will be the location of the drawn chart -->
     <div id="main-chart"></div>
-    <!-- Core Metrics -->
-    <h2>{{ child["age"]}} of Progress</h2>
-    <div>
-      <ul class="collection">
-        <li class="collection-item"><span class="coremetric">{{ headline_figures["wordcount"] }} Unique Words</span>
-        </li>
-        <li class="collection-item">{{ headline_figures["wordcount_percentile"] }} Percentile</li>
-        <li class="collection-item">{{ headline_figures["average_syllables"] }} Average Syllables</li>
-        <li class="collection-item">{{ headline_figures["syllable_percentile"] }} Percentile</li>
-        <li class="collection-item">"{{ headline_figures["longest_word"] }}" Longest Word Ever!</li>
-        <li class="collection-item">"{{ headline_figures["longest_word"] }}" Favorite Word</li>
-      </ul>
+    <!-- Cards with metrics -->
+    <div class="row">
+      <div class="col s4 m4">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title highlight-card-title">{{ headline_figures["wordcount"] }}</span>
+            <p class=highlight-card-description>Total Wordcount</p>
+          </div>
+          <div class="card-action">
+            <a href="#">Practice</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s4 m4">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title highlight-card-title">{{ headline_figures["average_syllables"] }}</span>
+            <p class=highlight-card-description>Average Syllables</p>
+          </div>
+          <div class="card-action">
+            <a href="#">Practice</a>
+          </div>
+        </div>
+      </div>
+      <div class="col s4 m4">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title highlight-card-title">{{ headline_figures["wordcount_percentile"] }}</span>
+            <p class=highlight-card-description>Percentile for {{ child["age"]}} olds</p>
+          </div>
+          <div class="card-action">
+            <a href="#">NIH Benchmarks</a>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- Fun word info -->
+    <!-- <div>
+        <ul class="collection">
+          <li class="collection-item">"{{ headline_figures["longest_word"] }}" Longest Word Ever!</li>
+          <li class="collection-item">"{{ headline_figures["longest_word"] }}" Favorite Word</li>
+        </ul>
+      </div> -->
+
   </div>
-</div>
-<div>
-  SUp Bro
 </div>
 
 <script src="{{ url_for('static', filename='d3/d3.tip.v0.6.3.js') }}" defer></script>

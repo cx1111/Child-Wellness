@@ -44,6 +44,18 @@ h1 {
   color: black !important;
 }
 
+/* Cards for highlights */
+
+.highlight-card-title {
+  text-align: center;
+  font-size: 50px !important;
+  margin-bottom: 15px;
+}
+
+.highlight-card-description {
+  text-align: center;
+  font-size: 25px !important;
+}
 /* For Charts */
 
 /* Style the lines by removing the fill and applying a stroke */
@@ -107,3 +119,6 @@ h1 {
   font-size: 20px;
   font-weight: 700;
 }
+
+
+/* For  */

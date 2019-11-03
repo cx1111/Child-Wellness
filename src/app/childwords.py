@@ -22,7 +22,7 @@ CHILD = {
 def dashboard():
     "The upper home landing page with all apps shown"
     child = CHILD.copy()
-    child['age'] = '32 Months'
+    child['age'] = '32 month'
     return render_template('dashboard.html', child=child)
 
 
@@ -58,7 +58,7 @@ def vocabulary():
         'getting_into_stanford': False}
 
     child = CHILD.copy()
-    child['age'] = '32 Months'
+    child['age'] = '32 month'
 
     return render_template(
         'home.html', child=child, headline_figures=headline_figures,
@@ -78,6 +78,6 @@ def video_detail(video_name):
     # Hardcode url for now
     video_info = {
         'title': video_name,
-        'url': 'https://drive.google.com/file/d/11dRucTxdfx6Soy_ldkzSaiDJ1I2eSV72/preview', 
+        'url': 'https://drive.google.com/file/d/11dRucTxdfx6Soy_ldkzSaiDJ1I2eSV72/preview',
         'transcript': speaker_segments}
     return render_template('video_detail.html', video_info=video_info)
