@@ -3,11 +3,6 @@ import json
 
 from .transcript import *
 
-parser = argparse.ArgumentParser()
-parser.add_argument('json_transcript', type=str, 
-					help='path to transcript json file to parse')
-args = parser.parse_args()
-
 def get_punct_data(word_segment, time, speaker_id):
 	"""
 	Create a WordData object from the parsed word_segment json object
@@ -106,6 +101,11 @@ def parse_aws_transcript(json_file):
 	return transcript
 
 if __name__ == '__main__':
+	parser = argparse.ArgumentParser()
+	parser.add_argument('json_transcript', type=str, 
+						help='path to transcript json file to parse')
+	args = parser.parse_args()
+
 	transcript = parse_aws_transcript(args.json_transcript)
 
 	# Print words and associated data per speaker

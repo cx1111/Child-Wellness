@@ -14,7 +14,7 @@ def transcribe_audio(audio_uri, output_bucket=config.BUCKET_TRANSCRIPTION):
     """
     client = boto3.client('transcribe')
 
-    file_name = os.path.basename(audio_uri).split('.')[0] + '_' + datetime.now().strftime('%Y%m%d%H%m%s')
+    file_name = os.path.basename(audio_uri).split('.')[0] + '_' + datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     file_format = os.path.basename(audio_uri).split('.')[1]
 
     output_path = output_bucket + '/' + file_name + '.json'
