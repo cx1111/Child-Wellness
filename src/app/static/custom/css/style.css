@@ -139,7 +139,7 @@ h1 {
 /* For transcript */
 .speech-bubble {
   position: relative;
-  background: #00aabb;
+  background: white;
   border-radius: 0.4em;
 }
 
@@ -151,16 +151,25 @@ h1 {
   width: 0;
   height: 0;
   border: 26px solid transparent;
-  border-right-color: #00aabb;
+  border-right-color: white;
   border-left: 0;
   border-bottom: 0;
   margin-top: -13px;
   margin-left: -26px;
 }
 
+/* Pushing the speech bubbles with contain the triangles */
+.pushright {
+  padding-left: 30px !important;
+}
+
+.pushleft {
+  padding-right: 30px !important;
+}
+
 .speech-bubble-right {
   position: relative;
-  background: #00aabb;
+  background: #eeeeee;
   border-radius: 0.4em;
 }
 
@@ -172,7 +181,7 @@ h1 {
   width: 0;
   height: 0;
   border: 26px solid transparent;
-  border-left-color: #00aabb;
+  border-left-color: #eeeeee;
   border-right: 0;
   border-bottom: 0;
   margin-top: -13px;
@@ -184,4 +193,6 @@ h1 {
   padding-bottom: 15px;
   padding-left: 15px;
   padding-right: 15px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }
