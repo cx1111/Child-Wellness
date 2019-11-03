@@ -115,7 +115,7 @@ Note that `--src_audio_dir` can be specified instead if you wish to transcribe a
 
 ### Getting Transcripts from Amazon Transcribe
 
-Transcriptions are stored as `json` objects in an S3 bucket upon completion of a job. Once all jobs are completed, the following will pull then down to be stored locally
+Transcriptions are stored as `json` objects in an S3 bucket upon completion of a job. Once all jobs are completed, the following will pull them down to be stored locally
 
 ```
 python pull_aws_transcription_results.py 
