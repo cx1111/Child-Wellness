@@ -3,6 +3,15 @@
 ## About
 
 {app_name} leverages the photos and videos taken by users of their children to benchmark their child's development and identify disease indications.
+
+### Proposed Functionality
+1. User authorizes {app_name} on their cloud photo drive.
+2. {app_name} identifies photos and videos of the user's child. Each media item becomes an observation of the specific child, on a specific day, containing many dimensions. 
+3. The observations are aggregated and analyzed to provided developmental trends to the user on an ongoing basis, push notifications are provided when milestones are successfully hit or medical diagnostic may be warranted.
+
+### Actual Functionality
+
+This repo demonstrates a pipeline from video to audio, audio to text, and finally to data aggregation and visualization via a flask web app.
  
 
 ## Usage
