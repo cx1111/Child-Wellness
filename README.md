@@ -12,6 +12,8 @@
 ### Actual Functionality
 
 This repo demonstrates a pipeline from video to audio, audio to text, and finally to data aggregation and visualization via a flask web app.
+
+For info on **how to run the demo** using preloaded parsed transcriptions from Amazon Transcribe, see the section on [running the web app](#running-the-web-application)
  
 
 ## Usage
