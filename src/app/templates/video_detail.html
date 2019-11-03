@@ -9,13 +9,13 @@
   <iframe src="{{ video_info['url'] }}" width="100%" height="600"></iframe>
 </div>
 
-<div class="transcript">
+<div class="container" style="overflow-y: scroll; height: 200px">
   {% for speaker_id, segment in video_info["transcript"] %}
   	<p>
   	  {% if speaker_id == "spk_0" %}
-  	    <span class="name">Alexandria: </span>
+  	    <span class="name"><strong>Alexandria: </strong></span>
   	  {% else %}
-  	    <span class ="name">Parent: </span>
+  	    <span class ="name"><strong>Parent: </strong></span>
   	  {% endif %}
   	  <span class="transcript_text">{{ segment }}</span>
     </p>
