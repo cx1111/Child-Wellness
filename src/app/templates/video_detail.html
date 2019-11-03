@@ -13,14 +13,12 @@
 <!-- <div class="container" style="overflow-y: scroll; height: 200px"> -->
   {% for speaker_id, segment in video_info["transcript"] %}
     {% if speaker_id == "spk_0" %}
-    <p class="speech-bubble">
-      <br>
+    <p class="speech-bubble padspeech">
       <span class="speakername"><strong>Alexandria: </strong></span>
       <span class="transcript_text">{{ segment }}</span>
-      <br><br>
     </p>
     {% else %}
-    <p>
+    <p class="speech-bubble-right padspeech">
       <span class="speakername"><strong>Parent: </strong></span>
       <span class="transcript_text">{{ segment }}</span>
     </p>
