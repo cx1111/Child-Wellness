@@ -2,7 +2,8 @@
 
 ## About
 
-{app_name} 
+{app_name} leverages the photos and videos taken by users of their children to benchmark their child's development and identify disease indications.
+ 
 
 ## Usage
 
