@@ -158,7 +158,7 @@ svg
   })
   .attr("r", 5)
   .on("mouseover", tip0.show)
-  .on("mouseout", tip0.hide);;
+  .on("mouseout", tip0.hide);
 
 // Add title if needed
 // svg
@@ -189,3 +189,28 @@ svg
   .attr("class", "ylabel")
   .style("text-anchor", "middle")
   .text("Unique Words Expressed");
+
+// Add legend
+svg
+  .append("text")
+  .attr("x", width * 0.95)
+  .attr("y", 640 - cumulativeWordcount[cumulativeWordcount.length - 1].wordcount)
+  .text(childName)
+  .style("font-size", "20px")
+  .attr("alignment-baseline", "middle");
+
+svg
+  .append("text")
+  .attr("x", width * 0.95)
+  .attr("y", 650 - datasetUpper[datasetUpper.length - 1].wordcount)
+  .text("75th PCTL")
+  .style("font-size", "20px")
+  .attr("alignment-baseline", "middle");
+
+svg
+  .append("text")
+  .attr("x", width * 0.95)
+  .attr("y", 610 - datasetLower[datasetLower.length - 1].wordcount)
+  .text("25th PCTL")
+  .style("font-size", "20px")
+  .attr("alignment-baseline", "middle");

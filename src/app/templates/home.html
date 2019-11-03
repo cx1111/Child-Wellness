@@ -40,7 +40,7 @@
             <p class=highlight-card-description>Percentile for {{ child["age"]}} olds</p>
           </div>
           <div class="card-action">
-            <a href="#">NIH Benchmarks</a>
+            <a href="http://wordbank.stanford.edu/analyses?name=vocab_norms&fbclid=IwAR084eMSIQCPW3ybn2p4xbtfDftqH3MNuW8-jURZTnWdh4ljeISi-DLktjE">Benchmarks</a>
           </div>
         </div>
       </div>
@@ -64,21 +64,17 @@
         </div>
       </div>
     </div>
-    <!-- <div>
-        <ul class="collection">
-          <li class="collection-item">"{{ headline_figures["longest_word"] }}" Longest Word Ever!</li>
-          <li class="collection-item">"{{ headline_figures["longest_word"] }}" Favorite Word</li>
-        </ul>
-      </div> -->
-
   </div>
 </div>
 
 <script src="{{ url_for('static', filename='d3/d3.tip.v0.6.3.js') }}" defer></script>
 <script>
+  // Pass in variables to script.
   // Even converting Python snake-cake to JS camel-case. Best build for sure!!!
   var averageWordcount = JSON.parse('{{ average_wordcount | tojson | safe}}');
   var cumulativeWordcount = JSON.parse('{{ cumulative_wordcount | tojson | safe}}');
+  var childName = '{{ child["name"]}}';
+
 </script>
 <script src="{{ url_for('static', filename='custom/js/drawstats.js') }}" defer></script>
 {% endblock %}
