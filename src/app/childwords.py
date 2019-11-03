@@ -54,7 +54,7 @@ def vocabulary():
     headline_figures = {
         'wordcount': 270, 'wordcount_percentile': 88,
         'average_syllables': 2.8, 'syllable_percentile': 96,
-        'longest_word': 'Miscellaneous',
+        'longest_word': 'Miscellaneous', 'favorite_word': 'Chicken',
         'getting_into_stanford': False}
 
     child = CHILD.copy()

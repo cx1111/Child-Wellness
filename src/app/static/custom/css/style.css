@@ -37,11 +37,22 @@ h1 {
 
 /* For Cards */
 .card-action {
-  text-align: center
+  text-align: center;
 }
 
 .cardlink {
   color: black !important;
+}
+
+.card-round {
+  border-radius: 15px !important;
+}
+
+.card-image {
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 /* Cards for highlights */
@@ -49,7 +60,7 @@ h1 {
 .highlight-card-title {
   text-align: center;
   font-size: 50px !important;
-  margin-bottom: 15px;
+  margin-bottom: 20px !important;
 }
 
 .highlight-card-description {
@@ -120,5 +131,25 @@ h1 {
   font-weight: 700;
 }
 
+/* For transcript */
 
-/* For  */
+.speech-bubble {
+  position: relative;
+  background: #00aabb;
+  border-radius: 0.4em;
+}
+
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #00aabb;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-left: -20px;
+}
