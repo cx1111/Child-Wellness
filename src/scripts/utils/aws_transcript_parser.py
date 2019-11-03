@@ -74,7 +74,7 @@ def parse_aws_transcript(json_file):
 	for label in labels:
 		items = label['items']
 		for item in items:
-			speaker_start_times[item['start_time']] = label['speaker_label']
+			speaker_start_times[item['start_time']] = item['speaker_label']
 
 
 	# Associate words with speakers and metadata and build transcript object
