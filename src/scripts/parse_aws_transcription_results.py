@@ -31,7 +31,8 @@ def main(args):
 		results.append({
 			'title': title,
 			'date': date,
-			'unique_words': speaker_unique_words
+			'unique_words': speaker_unique_words,
+			'speaker_segments': parsed.speaker_segments
 		})
 
 	with open(args.serialized_dest, 'wb') as f:

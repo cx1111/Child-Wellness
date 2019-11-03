@@ -10,11 +10,16 @@
 </div>
 
 <div class="transcript">
-  <p><span class="name">Alexandra: </span><span class="transcript_text">If they don't have their own box, they go to Miscellaneous.</span> </p>
-  <p><span class="name">Parent: </span> <span class="transcript_text">Good job. So who taught you that?</span></p>
-  <p><span class="name">Alexandra: </span><span class="transcript_text">Mommy.</span> </p>
-  <p><span class="name">Parent: </span><span class="transcript_text">Oh, When did I teach you?</span> </p>
-  <p><span class="name">Alexandra: </span><span class="transcript_text">When we were, when we were cleaning up. When you dumped all of the toys out.</span> </p>
-  <p><span class="name">Parent: </span><span class="transcript_text">A good job, baby. I'm so proud of you.</span> </p>
+  {% for speaker_id, segment in video_info["transcript"] %}
+  	<p>
+  	  {% if speaker_id == "spk_0" %}
+  	    <span class="name">Alexandria: </span>
+  	  {% else %}
+  	    <span class ="name">Parent: </span>
+  	  {% endif %}
+  	  <span class="transcript_text">{{ segment }}</span>
+    </p>
+    {% endfor %}
 </div>
+
 {% endblock %}

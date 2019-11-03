@@ -28,6 +28,23 @@ def get_child_transcripts():
     return child_transcripts
 
 
+def get_transcript(title):
+    """
+    Get all transcripts in date asc order with following info for each
+    vid/transcript:
+    - vid title
+    - date
+    - list of unique words
+    - Video file path
+
+    """
+    with open('../../data/parsed_transcriptions.pkl', 'rb') as f:
+        child_transcripts = pickle.load(f)
+
+    for i in child_transcripts:
+        if i['title'] == title:
+            return i
+
 def get_cumulative_stats(child_transcripts):
     """
     From a list of child transcripts, get cumulative stats for each date

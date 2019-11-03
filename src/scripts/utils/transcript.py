@@ -1,4 +1,5 @@
 from collections import defaultdict
+import string
 
 class WordMetadata:
 	"""
@@ -154,11 +155,23 @@ class MultiSpeakerTranscript(BaseTranscript):
 	def __init__(self):
 		super().__init__()
 		self._speaker_transcripts = {}
+		self._speaker_segments = []
 		self._speaker_ids = []
+
+		self._previous_speaker = None
+		self._current_segment = ''
 
 	@property
 	def speaker_ids(self):
 		return self._speaker_ids
+
+	@property
+	def speaker_segments(self):
+		if len(self._current_segment) > 0:
+			self._speaker_segments.append((self._previous_speaker, self._current_segment))
+			self._current_segment = ''
+
+		return self._speaker_segments
 	
 	def get_speaker_transcript(self, speaker_id):
 		return self._speaker_transcripts[speaker_id]
@@ -174,10 +187,27 @@ class MultiSpeakerTranscript(BaseTranscript):
 		Parameters:
 			word_data (WordData): WordData object to add to the end of the transcript
 		"""
+		# Add word to overall transcript
 		super().add_word(word_data)
 
+		# Add word to speaker transcript
 		speaker_id = word_data.speaker_id
 		if speaker_id not in self._speaker_transcripts:
 			self._speaker_ids.append(speaker_id)
 			self._speaker_transcripts[speaker_id] = SpeakerTranscript(speaker_id)
 		self._speaker_transcripts[speaker_id].add_word(word_data)
+
+		# Add word to the corresponding speaker semgent
+		if self._previous_speaker:
+			if speaker_id == self._previous_speaker:
+				if word_data.content in string.punctuation:
+					self._current_segment += word_data.content
+				else: 
+					self._current_segment += " " + word_data.content
+			else:
+				self._speaker_segments.append((self._previous_speaker, self._current_segment))
+				self._current_segment = word_data.content
+		else:
+			self._current_segment = word_data.content
+
+		self._previous_speaker = speaker_id
