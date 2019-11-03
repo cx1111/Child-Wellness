@@ -2,11 +2,13 @@
 
 ## About
 
-{app_name} leverages the photos and videos taken by users of their children to benchmark their child's development and identify disease indications.
+For DV Hacks: Humans, team Lexeme Labs developed a prototype for the app **Journey**.
+
+Journey leverages the photos and videos taken by users of their children to benchmark their child's development and identify disease indications.
 
 ### Proposed Functionality
-1. User authorizes {app_name} on their cloud photo drive.
-2. {app_name} identifies photos and videos of the user's child. Each media item becomes an observation of the specific child, on a specific day, containing many dimensions. 
+1. User authorizes Journey on their cloud photo drive.
+2. Journey identifies photos and videos of the user's child. Each media item becomes an observation of the specific child, on a specific day, containing many dimensions. 
 3. The observations are aggregated and analyzed to provided developmental trends to the user on an ongoing basis, push notifications are provided when milestones are successfully hit or medical diagnostic may be warranted.
 
 ### Actual Functionality
@@ -31,7 +33,7 @@ pip install -r requirements.txt
 
 #### AWS Credentials
 
-AWS is a key part of {app_name} and is required in order to run the entire pipeline. Credentials should be stored in `~/.aws/credentials` in the following format
+AWS is a key part of Journey and is required in order to run the entire pipeline. Credentials should be stored in `~/.aws/credentials` in the following format
 
 ```
 [{app-name}]
@@ -43,7 +45,7 @@ aws_secret_access_key = <secret-access-key>
 
 #### Amazon Transcribe
 
-{app_name} leverages [Amazon Transcribe](https://aws.amazon.com/transcribe/) to perform automatic speech recognition (ASR) and partitioning of audio into homogeneous segments according to the speaker identity. Given an audio clip, Amazon Transcribe will produce json files similar to the one below:
+Journey leverages [Amazon Transcribe](https://aws.amazon.com/transcribe/) to perform automatic speech recognition (ASR) and partitioning of audio into homogeneous segments according to the speaker identity. Given an audio clip, Amazon Transcribe will produce json files similar to the one below:
 
 ```
 {
