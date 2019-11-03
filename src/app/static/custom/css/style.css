@@ -1,3 +1,7 @@
+body {
+  background-color: #e6e5d6;
+}
+
 .bg-blue1 {
   background-color: #2e3558;
 }
@@ -10,39 +14,96 @@
   background-color: #30c1d7;
 }
 
+/* DV Human Hacks blue */
+.bg-bluedv {
+  background-color: #008caa;
+}
+
+.bg-tan {
+  background-color: #e6e5d6;
+}
+
 .coremetric {
   font-size: 60px;
 }
 
+.float-center {
+  text-align: center;
+}
+
+h1 {
+  font-family: "monserrat";
+}
+
+/* For Cards */
+.card-action {
+  text-align: center
+}
+
+.cardlink {
+  color: black !important;
+}
 
 /* For Charts */
 
 /* Style the lines by removing the fill and applying a stroke */
 .line-child {
   fill: none;
-  stroke: #2957ee;
+  stroke: #008caa;
   stroke-width: 3;
 }
 
 /* Style the dots by assigning a fill and stroke */
 /* The dot for the child of interest */
 .dot-child {
-  fill: #2957ee;
+  fill: #008caa;
   stroke: #fff;
 }
 
 .dot-child:hover {
-  background-color: yellow;
   cursor: pointer;
 }
 
 .line-upper {
   fill: none;
-  stroke: #30c1d7;
+  stroke: #4caf50;
   stroke-width: 3;
 }
 
 .dot-upper {
-  fill: #30c1d7;
+  fill: #4caf50;
   stroke: #fff;
+}
+
+.line-lower {
+  fill: none;
+  stroke: #d32f2f;
+  stroke-width: 3;
+}
+
+.dot-lower {
+  fill: #d32f2f;
+  stroke: #fff;
+}
+
+.xlabel {
+  font-size: 25px;
+}
+
+.ylabel {
+  font-size: 25px;
+}
+
+.xaxis {
+  font: 30px sans-serif;
+  font-size: 15px !important;
+}
+
+.yaxis {
+  font-size: 15px !important;
+}
+
+.d3hovertext {
+  font-size: 20px;
+  font-weight: 700;
 }

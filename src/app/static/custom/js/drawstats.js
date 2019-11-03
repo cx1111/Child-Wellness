@@ -6,9 +6,19 @@
 var parentDivName = "main-chart";
 var parentDiv = document.getElementById(parentDivName);
 
-var margin = { top: 50, right: 50, bottom: 50, left: 50 },
+// The tooltip function
+var tip0 = d3
+  .tip()
+  .attr("class", "d3-tip")
+  .offset([-10, 0])
+  .html(function(d) {
+    return d.wordcount;
+  });
+
+// Larger bottom margin to show x axis label
+var margin = { top: 10, right: 50, bottom: 100, left: 80 },
   width = parentDiv.offsetWidth - margin.left - margin.right, // Use the window's width
-  height = parentDiv.offsetWidth * 0.66 - margin.top - margin.bottom; // Use the window's height
+  height = parentDiv.offsetWidth * 0.5 - margin.top - margin.bottom; // Use the window's height
 
 // Data points from benchmarks
 var datasetUpper = averageWordcount["0.75"];
@@ -16,7 +26,7 @@ var datasetLower = averageWordcount["0.25"];
 // The number of datapoints
 var n = datasetUpper.length;
 
-// 5. X scale will use the index of our data
+// X scale will use the index of our data
 var xScale = d3
   .scaleLinear()
   .domain([16, 31]) // xlim
@@ -48,26 +58,23 @@ var svg = d3
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// 3. Call the x axis in a group tag
+// Add the tooltips to the svg
+svg.call(tip0);
+
+// Call the x axis in a group tag
 svg
   .append("g")
-  .attr("class", "x axis")
+  .attr("class", "xaxis")
   .attr("transform", "translate(0," + height + ")")
   .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
 
-// 4. Call the y axis in a group tag
+// Call the y axis in a group tag
 svg
   .append("g")
-  .attr("class", "y axis")
+  .attr("class", "yaxis")
   .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
 
-// 9. Append the path, bind the data, and call the line generator
-// svg
-//   .append("path")
-//   .datum(dataset) // 10. Binds data to the line
-//   .attr("class", "line") // Assign a class for styling
-//   .attr("d", line); // 11. Calls the line generator
-
+// Append the path, bind the data, and call the line generator
 svg
   .append("path")
   .datum(cumulativeWordcount)
@@ -83,10 +90,11 @@ svg
 svg
   .append("path")
   .datum(datasetLower)
-  .attr("class", "line-upper")
+  .attr("class", "line-lower")
   .attr("d", lineGenerator);
 
-// 12. Appends a circle for each datapoint
+// Appends a circle for each datapoint
+// With hover functionality
 svg
   .selectAll(".dot")
   .data(cumulativeWordcount)
@@ -101,8 +109,7 @@ svg
   })
   .attr("r", 5)
   .on("mouseover", function(d, i) {
-    // make the mouseover'd element
-    // bigger and red
+    // make the mouseover'd element bigger
     d3.select(this)
       .transition()
       .duration(100)
@@ -111,7 +118,6 @@ svg
   })
   .on("mouseout", function(d, i) {
     // return the mouseover'd element
-    // to being smaller and black
     d3.select(this)
       .transition()
       .duration(100)
@@ -134,22 +140,52 @@ svg
   .attr("cy", function(d) {
     return yScale(d.wordcount);
   })
-  .attr("r", 5);
+  .attr("r", 5)
+  .on("mouseover", tip0.show)
+  .on("mouseout", tip0.hide);
 
 svg
   .selectAll(".dot")
   .data(datasetLower)
   .enter()
   .append("circle")
-  .attr("class", "dot-upper")
+  .attr("class", "dot-lower")
   .attr("cx", function(d) {
     return xScale(d.age_months);
   })
   .attr("cy", function(d) {
     return yScale(d.wordcount);
   })
-  .attr("r", 5);
+  .attr("r", 5)
+  .on("mouseover", tip0.show)
+  .on("mouseout", tip0.hide);;
 
-var eee = document.querySelectorAll(".dot-child");
+// Add title if needed
+// svg
+//   .append("text")
+//   .attr("class", "graph-title")
+//   .attr("x", width / 2)
+//   .attr("y", 0 - margin.top / 2)
+//   .attr("text-anchor", "middle")
+//   .text('Unique Words Expressed');
 
-eee[0].onclick = "location.href='/videos/video-1;";
+// Add axis labels
+svg
+  .append("text")
+  .attr(
+    "transform",
+    "translate(" + width / 2 + " ," + (height + margin.bottom / 2) + ")"
+  )
+  .attr("class", "xlabel")
+  .style("text-anchor", "middle")
+  .text("Age in Months");
+
+svg
+  .append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 0 - margin.left)
+  .attr("x", 0 - height / 2)
+  .attr("dy", "1em")
+  .attr("class", "ylabel")
+  .style("text-anchor", "middle")
+  .text("Unique Words Expressed");

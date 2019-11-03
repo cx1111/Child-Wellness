@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}View Child's Health{% endblock %}
+
+<!-- Main content -->
+{% block content %}
+<div class="container">
+  <h1 class="float-center">{{ child["name"]}}'s Journey</h1>
+  <div class="row">
+    <!-- Height Card -->
+    <div class="col m4">
+      <div class="card bg-bluedv">
+        <div class="card-image">
+          <a href="#"><img src="{{ url_for('static', filename='images/height.png') }}"></a>
+        </div>
+        <div class="card-action">
+          <a href="#" class="cardlink">Height</a>
+        </div>
+      </div>
+    </div>
+    <!-- Weight Card -->
+    <div class="col m4">
+      <div class="card bg-bluedv">
+        <div class="card-image">
+          <a href="#"><img src="{{ url_for('static', filename='images/weight.png') }}"></a>
+        </div>
+        <div class="card-action">
+          <a href="#" class="cardlink">Weight</a>
+        </div>
+      </div>
+    </div>
+    <!-- Vocabulary Card -->
+    <div class="col m4">
+      <div class="card bg-bluedv">
+        <div class="card-image">
+          <a href="/vocabulary"><img src="{{ url_for('static', filename='images/talking.png') }}"></a>
+        </div>
+        <div class="card-action">
+          <a href="/vocabulary" class="cardlink">Vocabulary</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

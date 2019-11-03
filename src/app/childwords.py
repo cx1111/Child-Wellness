@@ -19,7 +19,15 @@ CHILD = {
 
 
 @app.route('/')
-def home():
+def dashboard():
+    "The upper home landing page with all apps shown"
+    child = CHILD.copy()
+    child['age'] = '32 Months'
+    return render_template('dashboard.html', child=child)
+
+
+@app.route('/vocabulary')
+def vocabulary():
     """
     The vocabulary home page. Contains graphs and headline figures
 
@@ -73,9 +81,3 @@ def video_detail(video_name):
         'url': 'https://drive.google.com/file/d/11dRucTxdfx6Soy_ldkzSaiDJ1I2eSV72/preview', 
         'transcript': speaker_segments}
     return render_template('video_detail.html', video_info=video_info)
-
-
-@app.route('/realhome')
-def real_home():
-    "Upper landing page with all apps shown"
-    return 'I wonder if we will get to this'

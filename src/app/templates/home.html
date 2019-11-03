@@ -4,28 +4,33 @@
 
 <!-- Main content -->
 {% block content %}
-<div class="container">
-  <h1>{{ child["name"]}}'s Vocabulary</h1>
-  <!-- Charts -->
-  <div>
-
+<div>
+  <div class="container bg-tan">
+    <h1 class="float-center">{{ child["name"]}}'s Vocabulary</h1>
     <!-- This will be the location of the drawn chart -->
     <div id="main-chart"></div>
-  </div>
-  <!-- Core Metrics -->
-  <h2>{{ child["age"]}} of Progress</h2>
-  <div>
-    <ul class="collection">
-      <li class="collection-item"><span class="coremetric">{{ headline_figures["wordcount"] }} Unique Words</span></li>
-      <li class="collection-item">{{ headline_figures["wordcount_percentile"] }} Percentile</li>
-      <li class="collection-item">{{ headline_figures["average_syllables"] }} Average Syllables</li>
-      <li class="collection-item">{{ headline_figures["syllable_percentile"] }} Percentile</li>
-      <li class="collection-item">"{{ headline_figures["longest_word"] }}" Longest Word Ever!</li>
-    </ul>
+    <!-- Core Metrics -->
+    <h2>{{ child["age"]}} of Progress</h2>
+    <div>
+      <ul class="collection">
+        <li class="collection-item"><span class="coremetric">{{ headline_figures["wordcount"] }} Unique Words</span>
+        </li>
+        <li class="collection-item">{{ headline_figures["wordcount_percentile"] }} Percentile</li>
+        <li class="collection-item">{{ headline_figures["average_syllables"] }} Average Syllables</li>
+        <li class="collection-item">{{ headline_figures["syllable_percentile"] }} Percentile</li>
+        <li class="collection-item">"{{ headline_figures["longest_word"] }}" Longest Word Ever!</li>
+        <li class="collection-item">"{{ headline_figures["longest_word"] }}" Favorite Word</li>
+      </ul>
+    </div>
   </div>
 </div>
+<div>
+  SUp Bro
+</div>
+
+<script src="{{ url_for('static', filename='d3/d3.tip.v0.6.3.js') }}" defer></script>
 <script>
-  // Even converting Python snake-cake to JS camel-case. Best build for sure.
+  // Even converting Python snake-cake to JS camel-case. Best build for sure!!!
   var averageWordcount = JSON.parse('{{ average_wordcount | tojson | safe}}');
   var cumulativeWordcount = JSON.parse('{{ cumulative_wordcount | tojson | safe}}');
 </script>
