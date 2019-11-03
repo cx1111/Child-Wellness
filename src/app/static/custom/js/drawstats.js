@@ -11,8 +11,8 @@ var margin = { top: 50, right: 50, bottom: 50, left: 50 },
   height = parentDiv.offsetWidth * 0.66 - margin.top - margin.bottom; // Use the window's height
 
 // Data points from benchmarks
-var datasetUpper = averageWordcount["0.9"];
-var datasetLower = averageWordcount["0.1"];
+var datasetUpper = averageWordcount["0.75"];
+var datasetLower = averageWordcount["0.25"];
 // The number of datapoints
 var n = datasetUpper.length;
 
@@ -25,7 +25,7 @@ var xScale = d3
 // 6. Y scale will use the randomly generate number
 var yScale = d3
   .scaleLinear()
-  .domain([0, 700]) // ylim
+  .domain([0, 650]) // ylim
   .range([height, 0]); // output
 
 // 7. d3's line generator
@@ -38,7 +38,6 @@ var lineGenerator = d3
     return yScale(d.wordcount);
   }) // set the y values for the line generator
   .curve(d3.curveMonotoneX); // apply smoothing to the line
-
 
 // 1. Add the SVG to the page and employ #2
 var svg = d3
@@ -72,7 +71,7 @@ svg
 svg
   .append("path")
   .datum(cumulativeWordcount)
-  .attr("class", "line")
+  .attr("class", "line-child")
   .attr("d", lineGenerator);
 
 svg
@@ -88,20 +87,40 @@ svg
   .attr("d", lineGenerator);
 
 // 12. Appends a circle for each datapoint
-
 svg
   .selectAll(".dot")
   .data(cumulativeWordcount)
   .enter()
   .append("circle") // Uses the enter().append() method
-  .attr("class", "dot") // Assign a class for styling
+  .attr("class", "dot-child") // Assign a class for styling
   .attr("cx", function(d) {
     return xScale(d.age_months);
   })
   .attr("cy", function(d) {
     return yScale(d.wordcount);
   })
-  .attr("r", 5);
+  .attr("r", 5)
+  .on("mouseover", function(d, i) {
+    // make the mouseover'd element
+    // bigger and red
+    d3.select(this)
+      .transition()
+      .duration(100)
+      .attr("r", 15)
+      .attr("fill", "#ff0000");
+  })
+  .on("mouseout", function(d, i) {
+    // return the mouseover'd element
+    // to being smaller and black
+    d3.select(this)
+      .transition()
+      .duration(100)
+      .attr("r", 5)
+      .attr("fill", "#000000");
+  })
+  .on("click", function(d, i) {
+    window.open("/videos/cleaning the basement 02-11-2019", "_blank");
+  });
 
 svg
   .selectAll(".dot")
@@ -130,3 +149,7 @@ svg
     return yScale(d.wordcount);
   })
   .attr("r", 5);
+
+var eee = document.querySelectorAll(".dot-child");
+
+eee[0].onclick = "location.href='/videos/video-1;";
